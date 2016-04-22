@@ -6,6 +6,7 @@
 
 ## Usage
 
+**ps:htmlHelper只处理相对路径的引用连接**
 
 ```
 var gulp = require('gulp');
@@ -35,7 +36,7 @@ gulp.task('default', function () {
 
 ## Example
 
-**ps:htmlHelper只处理相对路径的引用连接**
+
 
 option配置如下
 
