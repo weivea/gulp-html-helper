@@ -30,7 +30,7 @@ gulp.task('default', function () {
 
 - staticPath: html里面引用的静态资源被输出的目的目录（必填项）
 - urlBasePath:html里面引用的静态资源链接的公共路径（默认为'/'）
-- aliasPath:处理前,将HTML里面的静态资源引用链接做指定替换处理（不设置,则不做替换处理）
+- aliasPath:处理前,将HTML里面的静态资源引用链接做指定替换处理,遇到链接中有「originalPath」则先替换为「aliasPath」（不设置,则不做替换处理）
 - md5:处理链接时,是否加上md5
 
 ## Example

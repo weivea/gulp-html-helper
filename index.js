@@ -2,8 +2,6 @@
  * Created by weijianli on 16/4/22.
  */
 
-
-
 var path = require("path");
 var fs =require('fs');
 
@@ -121,7 +119,7 @@ function htmlHelper(opt) {
     opt.urlBasePath =  opt.urlBasePath || '/';
 
     if(opt.aliasPath &&( typeof opt.aliasPath !='object' || !/^\{.+:.+}$/.test(JSON.stringify(opt.aliasPath)))){
-      throw new PluginError(PLUGIN_NAME, 'urlBasePath must like {"originalPath":"aliasPath"}');
+      throw new PluginError(PLUGIN_NAME, 'aliasPath`s value must like {"originalPath":"aliasPath"}');
     }
   }
 
