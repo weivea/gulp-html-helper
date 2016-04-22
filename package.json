@@ -1,0 +1,29 @@
+{
+  "name": "gulp-html-helper",
+  "version": "1.0.0",
+  "description": "gulp tool for processing html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weivea/gulp-html-helper.git"
+  },
+  "keywords": [
+    "gulp",
+    "html"
+  ],
+  "author": "weivea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/weivea/gulp-html-helper/issues"
+  },
+  "homepage": "https://github.com/weivea/gulp-html-helper#readme",
+  "dependencies": {
+    "gulp-util": "^3.0.7",
+    "md5-file": "^2.0.4",
+    "modify-filename": "^1.1.0",
+    "readable-stream": "^2.1.0"
+  }
+}
