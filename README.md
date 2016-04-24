@@ -100,8 +100,8 @@ var option = {
 
 <a href="/a/s"></a>
 <img src="static/5df5003623c86ad78e83fb55f825f008.jpg">
-<script src="https://dn-xiaoying-static.qbox.me/webClint/jsPlugins/plugins/for_react_babel/react-with-addons.min.js"></script>
-<script src="https://dn-xiaoying-static.qbox.me/webClint/jsPlugins/plugins/for_react_babel/react-dom.min.js"></script>
+<script src="https://static.qbox.me/webClint/jsPlugins/plugins/for_react_babel/react-with-addons.min.js"></script>
+<script src="https://static.qbox.me/webClint/jsPlugins/plugins/for_react_babel/react-dom.min.js"></script>
 
 
 
