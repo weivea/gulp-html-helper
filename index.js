@@ -22,8 +22,7 @@ function htmlTransform(opt){
     var protoString =  buf.toString('utf8');
 
 
-    var matches = protoString.match(/<(img|link|script).*(src|href)=['"](?!(http|https):\/\/|\/).+['"].*(>)/gmi);
-
+    var matches = protoString.match(/<(img|link|script).*(src|href)=['"](?!((http|https):\/\/|\/)).+['"].*(>)/gmi);
 
 
     if(opt.aliasPath){
@@ -45,7 +44,7 @@ function htmlTransform(opt){
       }else if(value.indexOf('src=') != -1){
         attr = value.match(/src=['"].+['"]/gm)[0].split('=')[1].replace(/['"]/g,'');
       }
-
+      
       var re = value.replace(attr,opt.urlBasePath+ opStatics(opt,path.resolve(opt.base,attr)).replace(path.join(opt.staticPath,'/'),''));
       return re;
     });
@@ -156,7 +155,7 @@ function htmlHelper(opt) {
     }
     if (file.isStream()) {
       // 开始转换
-      opt.base = file.base;
+      opt.base = path.dirname(file.path);
       opt.path = file.path;
       file.contents = file.contents.pipe(htmlTransform(opt));
     }
