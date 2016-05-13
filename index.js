@@ -18,12 +18,10 @@ var PLUGIN_NAME = 'gulp-html-helper';
 function htmlTransform(opt){
 
   Transform.prototype._transform = function transform(buf, enc, cb) {
-
+    var opt = this.opt_;
     var protoString =  buf.toString('utf8');
 
-
     var matches = protoString.match(/<(img|link|script).*(src|href)=['"](?!((http|https):\/\/|\/)).+['"].*(>)/gmi);
-
 
     if(opt.aliasPath){
       var originalPath = Object.keys(opt.aliasPath)[0];
@@ -40,11 +38,10 @@ function htmlTransform(opt){
       var attr;
       if(value.indexOf('href=') != -1){
         attr = value.match(/href=['"].+['"]/gm)[0].split('=')[1].replace(/['"]/g,'');
-
+    
       }else if(value.indexOf('src=') != -1){
         attr = value.match(/src=['"].+['"]/gm)[0].split('=')[1].replace(/['"]/g,'');
       }
-      
       var re = value.replace(attr,opt.urlBasePath+ opStatics(opt,path.resolve(opt.base,attr)).replace(path.join(opt.staticPath,'/'),''));
       return re;
     });
@@ -59,12 +56,14 @@ function htmlTransform(opt){
       } else if(!/^href$/i.test(currentValue) && !/^src$/i.test(currentValue) && !/^>$/i.test(currentValue) && !/^link$/i.test(currentValue) && !/^script$/i.test(currentValue) && !/^img$/i.test(currentValue)){
         previousValue = '' + previousValue + currentValue;
       }
-
+    
       return previousValue;
     });
     cb(null, re);
   };
-  return new Transform();
+  var reT = new Transform();
+  reT.opt_ = opt;
+  return reT;
 }
 
 function opStatics(opt,filePath) {
@@ -155,9 +154,13 @@ function htmlHelper(opt) {
     }
     if (file.isStream()) {
       // 开始转换
-      opt.base = path.dirname(file.path);
-      opt.path = file.path;
-      file.contents = file.contents.pipe(htmlTransform(opt));
+      //opt.base = path.dirname(file.path);
+      //opt.path = file.path;
+      var newOpt = Object.assign({},opt,{
+        base:path.dirname(file.path),
+        path:file.path
+      });
+      file.contents = file.contents.pipe(htmlTransform(newOpt));
     }
 
     // 告诉 stream 转换工作完成
