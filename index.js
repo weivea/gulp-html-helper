@@ -22,7 +22,9 @@ function htmlTransform(opt){
     var protoString =  buf.toString('utf8');
 
     var matches = protoString.match(/<(img|link|script).*(src|href)=['"](?!((http|https):\/\/|\/)).+['"].*(>)/gmi);
-
+    if(!matches){
+      cb(null,protoString);return;
+    }
     if(opt.aliasPath){
       var originalPath = Object.keys(opt.aliasPath)[0];
       var aliasPath = opt.aliasPath[originalPath];
